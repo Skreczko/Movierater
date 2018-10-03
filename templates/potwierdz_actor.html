@@ -1,0 +1,21 @@
+{% extends 'glowny.html' %}
+{% block title %} Potwierdz {% endblock %}
+<!-- film_form.html -->
+{% block body %}
+
+
+
+<div class="card potwierdz" style="width: 600px; margin: auto;">
+  <div class="card-body">
+     <form method="post">   <!-- bez enctype, bo nie wnosimy tutaj zadnych plikow multimedialnych-->
+        {% csrf_token %}
+        <div class="alert alert-danger" role="alert">
+            <h5>Czy na pewno chcesz usunąć {{ actor }}</h5>
+        </div>
+        <button type="submit" class="btn btn-danger">Tak</button>
+         <a href="{% url 'lista_aktorow' %}"> <button type="button" class="btn btn-success">Nie</button> </a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

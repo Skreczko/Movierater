@@ -1,0 +1,23 @@
+{% extends 'glowny.html' %}
+{% block title %} Zapisz film {% endblock %}
+<!-- film_form.html -->
+{% load bootstrap %}
+{% block body %}
+
+<div class="film_form">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Zapisz film</h5>
+            <form role="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                {{ info }}<br>
+                <!-- automatycznie przymie wartość z movierater/urls.py z  auth_views-->
+                <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Zapisz film</button>
+                <a href="{% url 'wszystkie_filmy' %}"><button type="button" class="btn btn-secondary">Cofnij</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

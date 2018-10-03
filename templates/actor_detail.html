@@ -1,0 +1,123 @@
+<!-- lista_filmow -->
+{% extends 'glowny.html' %}
+{% block title %} Lista filmów {% endblock %}
+<!-- film_form.html -->
+{% block body %}
+    <div class="jumbotron" >
+      <h1 class="display-4">
+            {% if user.is_authenticated %}
+            <p class="welcome">Witaj, {{ user.username }}</p> <br>  <!-- imie zalogowanego użytkownika -->
+                <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+            {% endif %}
+      </h1>
+    </div>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'wszystkie_filmy' %}"><i class="fas fa-film"></i> Filmy</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'lista_aktorow' %}"><i class="fas fa-users"></i> Aktorzy</a>
+      </li>
+    </ul>
+    <div class = "search_bar">
+    <form type="get" action="{% url 'search_filmy'%}" class="form-inline my-10 my-lg-0" >
+        <input class="form-control mr-sm-1"  id="search_box" type="search" name="q"  placeholder="Szukaj filmu lub pozostaw pusty by powrócić do listy filmów" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit" > Potwierdź</button>
+    </form>
+</div>
+  </div>
+</nav>
+
+
+
+ <div class="card">
+            <div class="card-body">
+                <img src="/media/{{actor.photo}}" alt="plakat">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <h1>{{ actor }}</h1>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="{% url 'actor_edit' actor.id %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'usun_aktora' actor.id %}"><i class="far fa-trash-alt"></i></a>
+
+                    </div>
+                </div>
+                    <div class="row">
+                        <p class="desc">{{ actor.biography }}</p>
+                    </div>
+            </div>
+             <div class="card-body">
+
+
+
+
+
+
+
+
+<div>
+    <h5 style="text-align: center;">Filmografia</h5>
+</div>
+
+<a class="nav-link" href="#"><i class="fas fa-plus"></i> Dodaj nowy film</a>
+<table class="table table-hover">
+    {% for film in actor.movie.all %}
+    <tr>
+        <th scope="row"><img src="/media/{{film.photo}}" alt="" style="height: 100px, width: 40px; "></th>
+        <td colspan="2"></td>
+        <td><a href ="{% url 'film_detail' film.id%}" >{{ film }}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+            </div>
+         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+</div>

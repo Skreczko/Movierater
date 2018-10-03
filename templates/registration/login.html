@@ -1,0 +1,20 @@
+{% extends 'glowny.html' %}
+{% load bootstrap %}
+{% block title %} Zaloguj się {% endblock %}
+
+<!-- login.html -->
+{% block body %}
+<div class="login">
+    <div class="card login" style=" ">
+        <div class="card-body">
+            <h5 class="card-title">Zaloguj się</h5>
+            <form role="form" method="post">
+                {% csrf_token %}
+                {{ form|bootstrap }}  <!-- automatycznie przymie wartość z movierater/urls.py z  auth_views-->
+                <button type="submit" class="btn btn-primary">Login <i class="fas fa-sign-in-alt"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

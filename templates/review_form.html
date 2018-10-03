@@ -1,0 +1,25 @@
+{% extends 'glowny.html' %}
+{% block title %} Zapisz film {% endblock %}
+<!-- film_form.html -->
+{% load bootstrap %}
+{% block body %}
+
+
+
+<div class="film_form">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Zapisz</h5>
+            <form role="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ review|bootstrap }}
+
+                <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Zapisz</button>
+                <a href="{{request.META.HTTP_REFERER}}"><button type="button" class="btn btn-secondary">Cofnij</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<form action=""></form>
